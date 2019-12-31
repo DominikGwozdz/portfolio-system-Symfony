@@ -17,3 +17,4 @@
 
 ###Below files are custom by Portfolio system
 .env
+.idea/*
