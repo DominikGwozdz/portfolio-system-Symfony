@@ -3,11 +3,139 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <!-- plugins:css -->
+            <link rel="stylesheet" href="assets/admin/vendors/simple-line-icons/css/simple-line-icons.css">
+            <link rel="stylesheet" href="assets/admin/vendors/flag-icon-css/css/flag-icon.min.css">
+            <link rel="stylesheet" href="assets/admin/vendors/css/vendor.bundle.base.css">
+            <!-- endinject -->
+            <!-- Plugin css for this page -->
+            <link rel="stylesheet" href="assets/admin/vendors/daterangepicker/daterangepicker.css">
+            <link rel="stylesheet" href="assets/admin/vendors/chartist/chartist.min.css">
+            <!-- End plugin css for this page -->
+            <!-- inject:css -->
+            <!-- endinject -->
+            <!-- Layout styles -->
+            <link rel="stylesheet" href="assets/admin/css/style.css">
+            <!-- End layout styles -->
+        {% endblock %}
 
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block body %}
+            <div class="container-scroller">
+                <!-- partial:partials/_navbar.html -->
+                <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+                    <div class="navbar-brand-wrapper d-flex align-items-center">
+                        <a class="navbar-brand brand-logo" href="/admin">
+                            Foto-Sylwia
+                        </a>
+                        <a class="navbar-brand brand-logo-mini" href="/admin">FS</a>
+                    </div>
+                    <div class="navbar-menu-wrapper d-flex align-items-center flex-grow-1">
+                        <h5 class="mb-0 font-weight-medium d-none d-lg-flex">Witaj Foto-Sylwia dashboard!</h5>
+                        <ul class="navbar-nav navbar-nav-right ml-auto">
+                            <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
+                                <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                                    <img class="img-xs rounded-circle ml-2" src="assets/admin/images/faces/face8.jpg" alt="Profile image"> <span class="font-weight-normal"> Imię nazwisko </span></a>
+                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                                    <div class="dropdown-header text-center">
+                                        <img class="img-md rounded-circle" src="assets/admin/images/faces/face8.jpg" alt="Profile image">
+                                        <p class="mb-1 mt-3">Imię nazwisko</p>
+                                        <p class="font-weight-light text-muted mb-0">allenmoreno@gmail.com</p>
+                                    </div>
+                                    <a class="dropdown-item"><i class="dropdown-item-icon icon-user text-primary"></i> Mój Profil</a>
+                                    <a href="/logout" class="dropdown-item"><i class="dropdown-item-icon icon-power text-primary"></i>Wyloguj</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                            <span class="icon-menu"></span>
+                        </button>
+                    </div>
+                </nav>
+                <!-- partial -->
+                <div class="container-fluid page-body-wrapper">
+                    <!-- partial:partials/_sidebar.html -->
+                    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                        <ul class="nav">
+                            <li class="nav-item nav-profile">
+                                <a href="#" class="nav-link">
+                                    <div class="profile-image">
+                                        <img class="img-xs rounded-circle" src="assets/admin/images/faces/face8.jpg" alt="profile image">
+                                        <div class="dot-indicator bg-success"></div>
+                                    </div>
+                                    <div class="text-wrapper">
+                                        <p class="profile-name">Imię nazwisko</p>
+                                        <p class="designation">Administrator</p>
+                                    </div>
+
+                                </a>
+                            </li>
+                            <li class="nav-item nav-category">
+                                <span class="nav-link">Panel zarządzania</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin">
+                                    <span class="menu-title">Dashboard</span>
+                                    <i class="icon-screen-desktop menu-icon"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item nav-category"><span class="nav-link">Galeria</span></li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                                    <span class="menu-title">Ustaw galerię</span>
+                                    <i class="icon-layers menu-icon"></i>
+                                </a>
+                                <div class="collapse" id="ui-basic">
+                                    <ul class="nav flex-column sub-menu">
+                                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Kategorie</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Galerie</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- partial -->
+                    <div class="main-panel">
+                        <!-- UWAGA START -->
+                        {% block content %}
+                            {# Here is content #}
+                        {% endblock %}
+                        <!-- UWAGA STOP -->
+                        <!-- content-wrapper ends -->
+                        <!-- partial:partials/_footer.html -->
+                        <footer class="footer">
+                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap Dash</a>. All rights reserved.</span>
+                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="icon-heart text-danger"></i></span>
+                            </div>
+                        </footer>
+                        <!-- partial -->
+                    </div>
+                    <!-- main-panel ends -->
+                </div>
+                <!-- page-body-wrapper ends -->
+            </div>
+            <!-- container-scroller -->
+        {% endblock %}
+        {% block javascripts %}
+            <!-- plugins:js -->
+            <script src="assets/admin/vendors/js/vendor.bundle.base.js"></script>
+            <!-- endinject -->
+            <!-- Plugin js for this page -->
+            <script src="assets/admin/vendors/chart.js/Chart.min.js"></script>
+            <script src="assets/admin/vendors/moment/moment.min.js"></script>
+            <script src="assets/admin/vendors/daterangepicker/daterangepicker.js"></script>
+            <script src="assets/admin/vendors/chartist/chartist.min.js"></script>
+            <!-- End plugin js for this page -->
+            <!-- inject:js -->
+            <script src="assets/admin/js/off-canvas.js"></script>
+            <script src="assets/admin/js/misc.js"></script>
+            <!-- endinject -->
+            <!-- Custom js for this page -->
+            <script src="assets/admin/js/dashboard.js"></script>
+            <!-- End custom js for this page -->
+        {% endblock %}
     </body>
 </html>
