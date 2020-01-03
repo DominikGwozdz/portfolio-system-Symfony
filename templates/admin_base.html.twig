@@ -5,18 +5,18 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             <!-- plugins:css -->
-            <link rel="stylesheet" href="assets/admin/vendors/simple-line-icons/css/simple-line-icons.css">
-            <link rel="stylesheet" href="assets/admin/vendors/flag-icon-css/css/flag-icon.min.css">
-            <link rel="stylesheet" href="assets/admin/vendors/css/vendor.bundle.base.css">
+            <link rel="stylesheet" href="/assets/admin/vendors/simple-line-icons/css/simple-line-icons.css">
+            <link rel="stylesheet" href="/assets/admin/vendors/flag-icon-css/css/flag-icon.min.css">
+            <link rel="stylesheet" href="/assets/admin/vendors/css/vendor.bundle.base.css">
             <!-- endinject -->
             <!-- Plugin css for this page -->
-            <link rel="stylesheet" href="assets/admin/vendors/daterangepicker/daterangepicker.css">
-            <link rel="stylesheet" href="assets/admin/vendors/chartist/chartist.min.css">
+            <link rel="stylesheet" href="/assets/admin/vendors/daterangepicker/daterangepicker.css">
+            <link rel="stylesheet" href="/assets/admin/vendors/chartist/chartist.min.css">
             <!-- End plugin css for this page -->
             <!-- inject:css -->
             <!-- endinject -->
             <!-- Layout styles -->
-            <link rel="stylesheet" href="assets/admin/css/style.css">
+            <link rel="stylesheet" href="/assets/admin/css/style.css">
             <!-- End layout styles -->
         {% endblock %}
 
@@ -37,10 +37,10 @@
                         <ul class="navbar-nav navbar-nav-right ml-auto">
                             <li class="nav-item dropdown d-none d-xl-inline-flex user-dropdown">
                                 <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                                    <img class="img-xs rounded-circle ml-2" src="assets/admin/images/faces/face8.jpg" alt="Profile image"> <span class="font-weight-normal"> Imię nazwisko </span></a>
+                                    <img class="img-xs rounded-circle ml-2" src="/assets/admin/images/faces/face8.jpg" alt="Profile image"> <span class="font-weight-normal"> Imię nazwisko </span></a>
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                                     <div class="dropdown-header text-center">
-                                        <img class="img-md rounded-circle" src="assets/admin/images/faces/face8.jpg" alt="Profile image">
+                                        <img class="img-md rounded-circle" src="/assets/admin/images/faces/face8.jpg" alt="Profile image">
                                         <p class="mb-1 mt-3">Imię nazwisko</p>
                                         <p class="font-weight-light text-muted mb-0">allenmoreno@gmail.com</p>
                                     </div>
@@ -62,7 +62,7 @@
                             <li class="nav-item nav-profile">
                                 <a href="#" class="nav-link">
                                     <div class="profile-image">
-                                        <img class="img-xs rounded-circle" src="assets/admin/images/faces/face8.jpg" alt="profile image">
+                                        <img class="img-xs rounded-circle" src="/assets/admin/images/faces/face8.jpg" alt="profile image">
                                         <div class="dot-indicator bg-success"></div>
                                     </div>
                                     <div class="text-wrapper">
@@ -81,6 +81,15 @@
                                     <i class="icon-screen-desktop menu-icon"></i>
                                 </a>
                             </li>
+                            <li class="nav-item nav-category">
+                                <span class="nav-link">Strona o mnie</span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/about">
+                                    <span class="menu-title">O mnie</span>
+                                    <i class="icon-user menu-icon"></i>
+                                </a>
+                            </li>
                             <li class="nav-item nav-category"><span class="nav-link">Galeria</span></li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -94,6 +103,7 @@
                                     </ul>
                                 </div>
                             </li>
+
                         </ul>
                     </nav>
                     <!-- partial -->
@@ -121,20 +131,20 @@
         {% endblock %}
         {% block javascripts %}
             <!-- plugins:js -->
-            <script src="assets/admin/vendors/js/vendor.bundle.base.js"></script>
+            <script src="/assets/admin/vendors/js/vendor.bundle.base.js"></script>
             <!-- endinject -->
             <!-- Plugin js for this page -->
-            <script src="assets/admin/vendors/chart.js/Chart.min.js"></script>
-            <script src="assets/admin/vendors/moment/moment.min.js"></script>
-            <script src="assets/admin/vendors/daterangepicker/daterangepicker.js"></script>
-            <script src="assets/admin/vendors/chartist/chartist.min.js"></script>
+            <script src="/assets/admin/vendors/chart.js/Chart.min.js"></script>
+            <script src="/assets/admin/vendors/moment/moment.min.js"></script>
+            <script src="/assets/admin/vendors/daterangepicker/daterangepicker.js"></script>
+            <script src="/assets/admin/vendors/chartist/chartist.min.js"></script>
             <!-- End plugin js for this page -->
             <!-- inject:js -->
-            <script src="assets/admin/js/off-canvas.js"></script>
-            <script src="assets/admin/js/misc.js"></script>
+            <script src="/assets/admin/js/off-canvas.js"></script>
+            <script src="/assets/admin/js/misc.js"></script>
             <!-- endinject -->
             <!-- Custom js for this page -->
-            <script src="assets/admin/js/dashboard.js"></script>
+            <script src="/assets/admin/js/dashboard.js"></script>
             <!-- End custom js for this page -->
         {% endblock %}
     </body>
