@@ -22,4 +22,14 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
         ]);
     }
+
+    /**
+     * @Route("/admin/about", name="admin_about")
+     */
+    public function about()
+    {
+        return $this->render('admin/about.html.twig', [
+            'about' => 'Strona o mnie'
+        ]);
+    }
 }
