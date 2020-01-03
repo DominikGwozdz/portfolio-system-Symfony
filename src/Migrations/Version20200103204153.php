@@ -24,6 +24,7 @@ final class Version20200103204153 extends AbstractMigration
 
         $this->addSql('CREATE TABLE about (id INT AUTO_INCREMENT NOT NULL, picture VARCHAR(255) DEFAULT NULL, meta_description VARCHAR(255) DEFAULT NULL, description TEXT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE user CHANGE roles roles JSON NOT NULL');
+        $this->addSql('INSERT INTO about VALUES (null, null, null, null)');
     }
 
     public function down(Schema $schema) : void
