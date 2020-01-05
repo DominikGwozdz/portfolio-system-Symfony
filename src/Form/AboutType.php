@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class AboutType extends AbstractType
 {
@@ -19,7 +20,18 @@ class AboutType extends AbstractType
             ->add('picture',FileType::class,
                 [
                     'label' => 'Zdjęcie',
-                    'required' => false
+                    'mapped' => false,
+                    'required' => false,
+                    'constraints' => [
+                        new File([
+                            'maxSize' => '5M',
+                            'mimeTypes' => [
+                                'image/*',
+
+                            ],
+                            'mimeTypesMessage' => 'Obsługiwany format pliku to jpg'
+                        ])
+                    ]
                 ])
             ->add('meta_description', TextType::class,
                 [
