@@ -6,7 +6,8 @@ use App\Entity\About;
 use App\Form\AboutType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Exception\ExceptionInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,6 +51,27 @@ class AdminController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             try{
+                /** @var UploadedFile $pictureFile */
+                $pictureFile = $form->get('picture')->getData();
+                if ($pictureFile) {
+
+                    $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                    $newFilename = $safeFilename.'-'.uniqid().'.'.$pictureFile->guessExtension();
+
+                    try {
+                        //remove existing image first - then add new
+                        $filesystem = new Filesystem();
+                        $filesystem->remove('images/about/'.$aboutRepository->getPicture());
+
+                        $pictureFile->move('images/about', $newFilename);
+                        $aboutRepository->setPicture($newFilename);
+                    } catch (\Exception $e) {
+                        $this->addFlash('error', 'Wystąpił błąd przy wgrywaniu zdjęcia');
+                    }
+                }
+
+
                 $aboutRepository->setDescription($form->get('description')->getData());
                 $aboutRepository->setMetaDescription($form->get('meta_description')->getData());
                 $em->persist($aboutRepository);
