@@ -5,8 +5,25 @@
 {% block content %}
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-                {{ form(form) }}
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('error') %}
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <div class="card-body">
+                        <h4 class="card-title">Strona o mnie</h4>
+                        <p class="card-description"> Formularz </p>
+                        {% form_theme form 'bootstrap_4_layout.html.twig' %}
+                        {{ form(form) }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
