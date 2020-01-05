@@ -6,25 +6,26 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300i,400,700" rel="stylesheet">
-            <link rel="stylesheet" href="/assets/fonts/icomoon/style.css">
 
-            <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="/assets/css/magnific-popup.css">
-            <link rel="stylesheet" href="/assets/css/jquery-ui.css">
-            <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css">
+            <link rel="stylesheet" href="{{ asset('assets/fonts/icomoon/style.css') }}">
 
-            <link rel="stylesheet" href="/assets/css/lightgallery.min.css">
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}">
 
-            <link rel="stylesheet" href="/assets/css/bootstrap-datepicker.css">
+            <link rel="stylesheet" href="{{ asset('assets/css/lightgallery.min.css') }}">
 
-            <link rel="stylesheet" href="/assets/fonts/flaticon/font/flaticon.css">
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.css') }}">
 
-            <link rel="stylesheet" href="/assets/css/swiper.css">
+            <link rel="stylesheet" href="{{ asset('assets/fonts/flaticon/font/flaticon.css') }}">
 
-            <link rel="stylesheet" href="/assets/css/aos.css">
+            <link rel="stylesheet" href="{{ asset('assets/css/swiper.css') }}">
 
-            <link rel="stylesheet" href="/assets/css/style.css">
+            <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
+
+            <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         {% endblock %}
 
     </head>
@@ -107,24 +108,24 @@
             </div>
         {% endblock %}
         {% block javascripts %}
-            <script src="/assets/js/jquery-3.3.1.min.js"></script>
-            <script src="/assets/js/jquery-migrate-3.0.1.min.js"></script>
-            <script src="/assets/js/jquery-ui.js"></script>
-            <script src="/assets/js/popper.min.js"></script>
-            <script src="/assets/js/bootstrap.min.js"></script>
-            <script src="/assets/js/owl.carousel.min.js"></script>
-            <script src="/assets/js/jquery.stellar.min.js"></script>
-            <script src="/assets/js/jquery.countdown.min.js"></script>
-            <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-            <script src="/assets/js/bootstrap-datepicker.min.js"></script>
-            <script src="/assets/js/swiper.min.js"></script>
-            <script src="/assets/js/aos.js"></script>
+            <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery-migrate-3.0.1.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
+            <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.stellar.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+            <script src="{{ asset('assets/js/bootstrap-datepicker.min.js') }}"></script>
+            <script src="{{ asset('assets/js/swiper.min.js') }}"></script>
+            <script src="{{ asset('assets/js/aos.js') }}"></script>
 
-            <script src="/assets/js/picturefill.min.js"></script>
-            <script src="/assets/js/lightgallery-all.min.js"></script>
-            <script src="/assets/js/jquery.mousewheel.min.js"></script>
+            <script src="{{ asset('assets/js/picturefill.min.js') }}"></script>
+            <script src="{{ asset('assets/js/lightgallery-all.min.js') }}"></script>
+            <script src="{{ asset('assets/js/jquery.mousewheel.min.js') }}"></script>
 
-            <script src="/assets/js/main.js"></script>
+            <script src="{{ asset('assets/js/main.js') }}"></script>
 
             <script>
                 $(document).ready(function(){
