@@ -88,4 +88,15 @@ class AdminController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/admin/category", name="admin_category")
+     * @return Response
+     */
+    public function category()
+    {
+        return $this->render('admin/category.html.twig', [
+            'test' => "test",
+        ]);
+    }
 }
