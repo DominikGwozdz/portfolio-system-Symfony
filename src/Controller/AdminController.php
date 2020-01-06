@@ -113,6 +113,7 @@ class AdminController extends AbstractController
     {
         $form = $this->createForm(CategoryType::class);
 
+        //handle request is executed when request has method post
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             try {
