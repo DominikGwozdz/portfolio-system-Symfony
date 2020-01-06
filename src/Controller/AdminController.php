@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\About;
+use App\Entity\GalleryCategory;
 use App\Form\AboutType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -95,8 +96,11 @@ class AdminController extends AbstractController
      */
     public function category()
     {
+        $em = $this->getDoctrine()->getManager();
+        $categoryRepository = $em->getRepository(GalleryCategory::class)->findAll();
+
         return $this->render('admin/category.html.twig', [
-            'test' => "test",
+            'categories' => $categoryRepository,
         ]);
     }
 }
