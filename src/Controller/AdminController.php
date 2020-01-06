@@ -103,4 +103,13 @@ class AdminController extends AbstractController
             'categories' => $categoryRepository,
         ]);
     }
+
+    /**
+     * @Route("/admin/category/add", name="admin_category_add")
+     * @return Response
+     */
+    public function category_add()
+    {
+        return $this->render('admin/category_add.html.twig');
+    }
 }
