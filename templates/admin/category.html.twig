@@ -20,6 +20,35 @@
                     <div class="card-body">
                         <h4 class="card-title">Strona kategorii</h4>
                         <p class="card-description">Lista</p>
+                        <a href="" class="btn btn-success btn-rounded btn-fw mb-4"><i class="icon icon-plus"></i> Dodaj nową</a>
+                        {% if categories %}
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Nazwa</th>
+                                <th>Obrazek wyróżniający</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for category in categories %}
+                                <tr>
+                                    <td>{{ category.name }}</td>
+                                    <td><img src="/images/categories/{{ category.picture }}" alt="{{ category.name }}" class="img-fluid w-25" /></td>
+                                    <td>
+                                        {% if category.isVisible %}
+                                            <label class="badge badge-success">Widoczna</label>
+                                        {% else %}
+                                            <label class="badge badge-danger">Niewidoczna</label>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                            <p>Brak kategorii</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
