@@ -109,9 +109,45 @@ class AdminController extends AbstractController
      * @Route("/admin/category/add", name="admin_category_add")
      * @return Response
      */
-    public function category_add()
+    public function category_add(Request $request)
     {
         $form = $this->createForm(CategoryType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+
+                $category = new GalleryCategory();
+                $category->setName($form->get('name')->getData());
+                $category->setIsVisible($form->get('is_visible')->getData());
+
+                /** @var UploadedFile $pictureFile */
+                $pictureFile = $form->get('picture')->getData();
+
+                if ($pictureFile) {
+                    $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $pictureFile->guessExtension();
+
+                    try {
+                        $pictureFile->move('images/categories', $newFilename);
+                        $category->setPicture($newFilename);
+                    } catch (\Exception $e) {
+                        $this->addFlash('error', 'Wystąpił błąd przy wgrywaniu zdjęcia');
+                    }
+                }
+                $em->persist($category);
+                $em->flush();
+
+                $this->addFlash('success', 'Dodano nową kategorie');
+
+                return $this->redirectToRoute('admin_category');
+            } catch (\Exception $e) {
+                $this->addFlash('error', "Wystąpił błąd przy tworzeniu. Możliwy powód to zbyt duże zdjęcie");
+            }
+        }
+
         return $this->render('admin/category_add.html.twig', [
             'form' => $form->createView(),
         ]);
