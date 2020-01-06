@@ -28,6 +28,7 @@
                                 <th>Nazwa kategorii</th>
                                 <th>Obrazek wyróżniający</th>
                                 <th>Status</th>
+                                <th>Opcje</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -42,6 +43,8 @@
                                             <label class="badge badge-danger">Niewidoczna</label>
                                         {% endif %}
                                     </td>
+                                    <td><a href="/admin/category/edit/{{ category.id }}" class="btn btn-sm btn-primary btn-icon-text"> Edytuj <i class="icon-doc btn-icon-append"></i>
+                                            </a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
