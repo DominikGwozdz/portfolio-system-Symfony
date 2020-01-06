@@ -107,6 +107,7 @@ class AdminController extends AbstractController
 
     /**
      * @Route("/admin/category/add", name="admin_category_add")
+     * @param Request $request
      * @return Response
      */
     public function category_add(Request $request)
@@ -150,6 +151,35 @@ class AdminController extends AbstractController
         }
 
         return $this->render('admin/category_add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/category/edit/{id}", name="admin_category_edit")
+     * @param Request $request
+     * @param null $id
+     * @return Response
+     */
+    public function category_edit(Request $request, $id = null)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var GalleryCategory $galleryCategoryRepository */
+        $galleryCategoryRepository = $em->getRepository(GalleryCategory::class)->find($id);
+
+        $galleryCategory = new GalleryCategory();
+        $galleryCategory->setName($galleryCategoryRepository->getName());
+        $galleryCategory->setIsVisible($galleryCategoryRepository->getIsVisible());
+
+        $form = $this->createForm(CategoryType::class, $galleryCategory);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            //Ogarnij edycje kategorii - jest good
+        }
+
+        return $this->render('admin/category_edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
