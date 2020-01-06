@@ -20,7 +20,8 @@
                     <div class="card-body">
                         <h4 class="card-title">Dodawanie nowej kategorii</h4>
                         <p class="card-description">Formularz</p>
-
+                        {% form_theme form 'bootstrap_4_layout.html.twig' %}
+                        {{ form(form) }}
                     </div>
                 </div>
             </div>

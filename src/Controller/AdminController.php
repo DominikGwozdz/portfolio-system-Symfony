@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\About;
 use App\Entity\GalleryCategory;
 use App\Form\AboutType;
+use App\Form\CategoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
@@ -110,6 +111,9 @@ class AdminController extends AbstractController
      */
     public function category_add()
     {
-        return $this->render('admin/category_add.html.twig');
+        $form = $this->createForm(CategoryType::class);
+        return $this->render('admin/category_add.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
