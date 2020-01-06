@@ -59,7 +59,7 @@
                                         <li {% if app.request.get('_route') == 'about' %}class="active"{% endif %}><a href="/about">O mnie</a> </li>
                                         <li><a href="/">Osiągnięcia</a></li>
                                         <li><a href="/">Cennik</a></li>
-                                        <li><a href="/">Galeria</a></li>
+                                        <li {% if app.request.get('_route') == 'gallery' %}class="active"{% endif %}><a href="/gallery">Galeria</a></li>
                                         <li><a href="/">Kontakt</a></li>
                                     </ul>
                                 </nav>
