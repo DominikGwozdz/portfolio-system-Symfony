@@ -34,7 +34,7 @@
                             {% for category in categories %}
                                 <tr>
                                     <td>{{ category.name }}</td>
-                                    <td><img src="/images/categories/{{ category.picture }}" alt="{{ category.name }}" class="img-fluid w-25" /></td>
+                                    <td><img src="/images/categories/{{ category.picture }}" alt="{{ category.name }}" /></td>
                                     <td>
                                         {% if category.isVisible %}
                                             <label class="badge badge-success">Widoczna</label>
