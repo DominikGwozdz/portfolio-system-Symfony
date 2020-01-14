@@ -45,7 +45,7 @@
                                     </td>
                                     <td>
                                         <a href="/admin/category/edit/{{ category.id }}" class="btn btn-sm btn-primary btn-icon-text"> Edytuj <i class="icon-doc btn-icon-append"></i></a>
-                                        <a onclick="return confirm('Na pewno?');" href="/admin/category/remove/{{ category.id }}" class="btn btn-sm btn-danger btn-icon-text"> Usuń <i class="icon-close btn-icon-append"></i></a>
+                                        <a onclick="return confirm('Na pewno usunąć kategorie?');" href="/admin/category/remove/{{ category.id }}" class="btn btn-sm btn-danger btn-icon-text"> Usuń <i class="icon-close btn-icon-append"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}

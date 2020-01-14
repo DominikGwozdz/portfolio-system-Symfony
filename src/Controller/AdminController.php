@@ -215,7 +215,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/category/remove/{id}", name="admin_category_edit")
+     * @Route("/admin/category/remove/{id}", name="admin_category_remove")
      * @param Request $request
      * @param null $id
      * @return Response
