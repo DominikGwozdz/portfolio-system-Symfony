@@ -6,6 +6,7 @@ use App\Entity\About;
 use App\Entity\GalleryCategory;
 use App\Form\AboutType;
 use App\Form\CategoryType;
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
@@ -211,5 +212,26 @@ class AdminController extends AbstractController
         return $this->render('admin/category_edit.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/admin/category/remove/{id}", name="admin_category_edit")
+     * @param Request $request
+     * @param null $id
+     * @return Response
+     */
+    public function category_delete(Request $request, $id = null)
+    {
+        try {
+            $em = $this->getDoctrine()->getManager();
+            $galleryCategory = $em->getRepository(GalleryCategory::class)->find($id);
+            $em->remove($galleryCategory);
+            $em->flush();
+            $this->addFlash('success','Usunięto kategorie!');
+            return $this->redirectToRoute('admin_category');
+        } catch (\Exception $e) {
+            $this->addFlash('error','Nie można usunąć kategorii - byc może zawiera juz jakies galerie. Najpierw usuń wszystkie galerie z kategorii!');
+        }
+
     }
 }
