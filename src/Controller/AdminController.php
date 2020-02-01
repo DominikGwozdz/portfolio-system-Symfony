@@ -220,11 +220,16 @@ class AdminController extends AbstractController
      * @param null $id
      * @return Response
      */
-    public function category_delete(Request $request, $id = null)
+    public function category_delete(Request $request, $id = null) : Response
     {
         try {
             $em = $this->getDoctrine()->getManager();
             $galleryCategory = $em->getRepository(GalleryCategory::class)->find($id);
+
+            $filesystem = new Filesystem();
+            if ($filesystem->exists('images/categories/' . $galleryCategory->getPicture())) {
+                $filesystem->remove('images/categories/' . $galleryCategory->getPicture());
+            }
             $em->remove($galleryCategory);
             $em->flush();
             $this->addFlash('success','Usunięto kategorie!');
