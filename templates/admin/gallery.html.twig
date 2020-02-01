@@ -1,0 +1,62 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Admin Dashboard!{% endblock %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.flashes('error') %}
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <div class="card-body">
+                        <h4 class="card-title">Strona galerii</h4>
+                        <p class="card-description">Lista</p>
+                        <a href="/admin/gallery/add" class="btn btn-success btn-rounded btn-fw mb-4"><i class="icon icon-plus"></i> Dodaj nową galerie</a>
+                        {% if galleries %}
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Nazwa galerii</th>
+                                <th>Obrazek wyróżniający</th>
+                                <th>Czy zabezpieczona na hasło?</th>
+                                <th>Opcje</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for gallery in galleries %}
+                                <tr>
+                                    <td>{{ gallery.name }}</td>
+                                    <td><img src="/images/categories/{{ gallery.picture }}" alt="{{ gallery.name }}" /></td>
+                                    <td>
+                                        {% if category.isVisible %}
+                                            <label class="badge badge-success">Widoczna</label>
+                                        {% else %}
+                                            <label class="badge badge-danger">Niewidoczna</label>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="/admin/gallery/edit/{{ gallery.id }}" class="btn btn-sm btn-primary btn-icon-text"> Edytuj <i class="icon-doc btn-icon-append"></i></a>
+                                        <a onclick="return confirm('Na pewno usunąć galerie?');" href="/admin/gallery/remove/{{ gallery.id }}" class="btn btn-sm btn-danger btn-icon-text"> Usuń <i class="icon-close btn-icon-append"></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                            <p>Brak galerii</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

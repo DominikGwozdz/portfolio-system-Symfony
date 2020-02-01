@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\About;
+use App\Entity\Gallery;
 use App\Entity\GalleryCategory;
 use App\Form\AboutType;
 use App\Form\CategoryType;
@@ -220,7 +221,7 @@ class AdminController extends AbstractController
      * @param null $id
      * @return Response
      */
-    public function category_delete(Request $request, $id = null) : Response
+    public function category_delete(Request $request, $id = null)
     {
         try {
             $em = $this->getDoctrine()->getManager();
@@ -237,6 +238,19 @@ class AdminController extends AbstractController
         } catch (\Exception $e) {
             $this->addFlash('error','Nie można usunąć kategorii - byc może zawiera juz jakies galerie. Najpierw usuń wszystkie galerie z kategorii!');
         }
+    }
 
+    /**
+     * @Route("/admin/gallery", name="admin_gallery")
+     * @return Response
+     */
+    public function gallery()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $galleryRepository = $em->getRepository(Gallery::class)->findAll();
+
+        return $this->render('admin/gallery.html.twig', [
+            'galleries' => $galleryRepository,
+        ]);
     }
 }
