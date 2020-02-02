@@ -31,7 +31,12 @@
                                                 <h4 class="c-gallery-admin__category">Kategoria: {{ gallery.category.name }}</h4>
                                                 <p class="d-flex flex-row justify-content-between align-items-center">
                                                     <span class="text-muted">X zdjęć</span>
-                                                    <span class="badge badge-success w-50">Widoczna</span>
+                                                    {% if gallery.isVisible %}
+                                                        <span class="badge badge-success w-50">Widoczna</span>
+                                                    {% else %}
+                                                        <span class="badge badge-danger w-50">Niewidoczna</span>
+                                                    {% endif %}
+
                                                 </p>
                                                 <div class="">
                                                     <a href="{{ path('admin_gallery_edit', {'id': gallery.id}) }}" class="badge badge-primary text-white">Edytuj</a>
