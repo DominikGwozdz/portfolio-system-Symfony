@@ -37,7 +37,7 @@
                                     <td>{{ gallery.name }}</td>
                                     <td><img src="/images/categories/{{ gallery.picture }}" alt="{{ gallery.name }}" /></td>
                                     <td>
-                                        {% if category.isVisible %}
+                                        {% if gallery.isVisible %}
                                             <label class="badge badge-success">Widoczna</label>
                                         {% else %}
                                             <label class="badge badge-danger">Niewidoczna</label>
