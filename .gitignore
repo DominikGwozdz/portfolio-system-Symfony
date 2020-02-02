@@ -22,3 +22,4 @@ composer.lock
 symfony.lock
 public/images/about/*
 public/images/categories/*
+public/images/gallery/*
