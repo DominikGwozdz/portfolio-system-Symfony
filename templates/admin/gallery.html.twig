@@ -22,35 +22,29 @@
                         <p class="card-description">Lista</p>
                         <a href="/admin/gallery/add" class="btn btn-success btn-rounded btn-fw mb-4"><i class="icon icon-plus"></i> Dodaj nową galerie</a>
                         {% if galleries %}
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Nazwa galerii</th>
-                                <th>Obrazek wyróżniający</th>
-                                <th>Czy zabezpieczona na hasło?</th>
-                                <th>Opcje</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for gallery in galleries %}
-                                <tr>
-                                    <td>{{ gallery.name }}</td>
-                                    <td><img src="/images/categories/{{ gallery.picture }}" alt="{{ gallery.name }}" /></td>
-                                    <td>
-                                        {% if gallery.isVisible %}
-                                            <label class="badge badge-success">Widoczna</label>
-                                        {% else %}
-                                            <label class="badge badge-danger">Niewidoczna</label>
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        <a href="/admin/gallery/edit/{{ gallery.id }}" class="btn btn-sm btn-primary btn-icon-text"> Edytuj <i class="icon-doc btn-icon-append"></i></a>
-                                        <a onclick="return confirm('Na pewno usunąć galerie?');" href="/admin/gallery/remove/{{ gallery.id }}" class="btn btn-sm btn-danger btn-icon-text"> Usuń <i class="icon-close btn-icon-append"></i></a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                            <div class="row">
+                                {% for gallery in galleries %}
+                                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3 mb-2 mt-2 border-top border-left">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex flex-column">
+                                                <div class="c-gallery-admin__title report-title">Nazwa: {{ gallery.name }}</div>
+                                                <h4 class="c-gallery-admin__category">Kategoria: {{ gallery.category.name }}</h4>
+                                                <p class="d-flex flex-row justify-content-between align-items-center">
+                                                    <span class="text-muted">X zdjęć</span>
+                                                    <span class="badge badge-success w-50">Widoczna</span>
+                                                </p>
+                                                <div class="">
+                                                    <a href="" class="badge badge-primary text-white">Edytuj</a>
+                                                    <a href="" class="badge badge-danger text-white">Usuń</a>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <img src="/images/gallery/{{ gallery.directory }}/label/{{ gallery.picture }}" class="img-fluid rounded" alt="{{ gallery.name }}" style="width: 120px; height: auto;"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         {% else %}
                             <p>Brak galerii</p>
                         {% endif %}
