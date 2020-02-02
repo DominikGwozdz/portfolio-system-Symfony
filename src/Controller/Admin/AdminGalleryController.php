@@ -6,6 +6,7 @@ use App\Controller\AdminController;
 use App\Entity\Gallery;
 use App\Form\GalleryType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -84,6 +85,72 @@ class AdminGalleryController extends AdminController
         }
 
         return $this->render('admin/gallery_add.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/gallery/edit/{id}", name="admin_gallery_edit")
+     * @param Request $request
+     * @param null $id
+     * @return RedirectResponse|Response
+     */
+    public function galleryEdit(Request $request, $id = null)
+    {
+        $emOldGallery = $this->getDoctrine()->getManager();
+        /** @var Gallery $galleryRepository */
+        $galleryRepository = $emOldGallery->getRepository(Gallery::class)->find($id);
+
+        $gallery = new Gallery();
+        $gallery->setName($galleryRepository->getName());
+        $gallery->setIsVisible($galleryRepository->getIsVisible());
+        $gallery->setIsProtected($galleryRepository->getIsProtected());
+        $gallery->setPassword($galleryRepository->getPassword());
+        $gallery->setCategory($galleryRepository->getCategory());
+
+        $form = $this->createForm(GalleryType::class, $gallery);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+
+                $em = $this->getDoctrine()->getManager();
+
+                $gallery = $em->getRepository(Gallery::class)->find($id);
+                $gallery->setName($form->get('name')->getData());
+                $gallery->setIsProtected($form->get('is_protected')->getData());
+                $gallery->setPassword($form->get('password')->getData());
+                $gallery->setIsVisible($form->get('is_visible')->getData());
+                $gallery->setCategory($form->get('category')->getData());
+
+                /** @var UploadedFile $pictureFile */
+                $pictureFile = $form->get('picture')->getData();
+
+                if ($pictureFile) {
+                    $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
+                    $newFilename = $safeFilename . '-' . uniqid() . '.' . $pictureFile->guessExtension();
+
+                    try {
+                        $pictureFile->move('images/gallery/'.$gallery->getDirectory().'/label', $newFilename);
+                        $gallery->setPicture($newFilename);
+                    } catch (\Exception $e) {
+                        $this->addFlash('error', 'Wystąpił błąd przy wgrywaniu zdjęcia');
+                    }
+                }
+
+                $em->persist($gallery);
+                $em->flush();
+
+                $this->addFlash('success','Zmieniono istniejącą galerie');
+                return $this->redirectToRoute('admin_gallery');
+
+            } catch (\Exception $e) {
+                $this->addFlash('error', "Wystąpił błąd przy zmianie galerii. Możliwy powód to zbyt duże zdjęcie okładki");
+            }
+        }
+
+        return $this->render('admin/gallery_edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
