@@ -28,4 +28,12 @@ class AdminGalleryController extends AdminController
             'galleries' => $galleryRepository,
         ]);
     }
+
+    /**
+     * @Route("/admin/gallery/add", name="admin_gallery_add")
+     */
+    public function galleryAdd()
+    {
+
+    }
 }
