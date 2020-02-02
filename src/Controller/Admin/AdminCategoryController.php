@@ -38,7 +38,7 @@ class AdminCategoryController extends AdminController
      * @param Request $request
      * @return Response
      */
-    public function category_add(Request $request)
+    public function categoryAdd(Request $request)
     {
         $form = $this->createForm(CategoryType::class);
 
@@ -89,7 +89,7 @@ class AdminCategoryController extends AdminController
      * @param null $id
      * @return Response
      */
-    public function category_edit(Request $request, $id = null)
+    public function categoryEdit(Request $request, $id = null)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -147,7 +147,7 @@ class AdminCategoryController extends AdminController
      * @param null $id
      * @return Response
      */
-    public function category_delete(Request $request, $id = null)
+    public function categoryDelete(Request $request, $id = null)
     {
         try {
             $em = $this->getDoctrine()->getManager();
