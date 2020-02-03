@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AdminController;
 use App\Entity\Gallery;
+use App\Entity\GalleryItem;
 use App\Form\GalleryType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -152,6 +153,20 @@ class AdminGalleryController extends AdminController
 
         return $this->render('admin/gallery_edit.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/gallery/add_mass_photos/{id}", name="admin_gallery_add_mass_photos")
+     * @param null $id
+     * @return Response
+     */
+    public function galleryAddMassPhotos($id = null)
+    {
+        $form = $this->createForm(GalleryItem::class);
+
+        return $this->render('admin/gallery_item_add.html.twig', [
+           'form' => $form->createView(),
         ]);
     }
 }
