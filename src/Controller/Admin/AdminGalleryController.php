@@ -155,18 +155,4 @@ class AdminGalleryController extends AdminController
             'form' => $form->createView(),
         ]);
     }
-
-    /**
-     * @Route("/admin/gallery/add_mass_photos/{id}", name="admin_gallery_add_mass_photos")
-     * @param null $id
-     * @return Response
-     */
-    public function galleryAddMassPhotos($id = null)
-    {
-        $form = $this->createForm(GalleryItem::class);
-
-        return $this->render('admin/gallery_item_add.html.twig', [
-           'form' => $form->createView(),
-        ]);
-    }
 }
