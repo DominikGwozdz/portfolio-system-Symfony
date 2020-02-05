@@ -123,6 +123,8 @@ class AdminGalleryController extends AdminController
 
                 $gallery = $em->getRepository(Gallery::class)->find($id);
                 $gallery->setName($form->get('name')->getData());
+                $slugName = Transliterator::transliterate($form->get('name')->getData());
+                $gallery->setSlug($slugName);
                 $gallery->setIsProtected($form->get('is_protected')->getData());
                 $gallery->setPassword($form->get('password')->getData());
                 $gallery->setIsVisible($form->get('is_visible')->getData());
