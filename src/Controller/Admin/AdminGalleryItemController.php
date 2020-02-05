@@ -54,11 +54,11 @@ class AdminGalleryItemController extends AdminController
 
                     $emGalleryItem->persist($galleryItem);
                     $emGalleryItem->flush();
-                    $this->addFlash('success', 'Dodano wszystkie zdjęcia!');
                 } catch (\Exception $e) {
                     $this->addFlash('error', 'Wystąpił błąd przy dodawaniu zdjęć');
                 }
             }
+            $this->addFlash('success', 'Dodano wszystkie zdjęcia!');
         }
 
         return $this->render('admin/gallery_item_add.html.twig', [
