@@ -41,7 +41,7 @@
                                                 <div class="">
                                                     <a href="{{ path('admin_gallery_add_mass_photos', {'id': gallery.id}) }}" class="badge badge-dark text-white">Dodaj zdjęcia</a>
                                                     <a href="{{ path('admin_gallery_edit', {'id': gallery.id}) }}" class="badge badge-info text-white">Zmień</a>
-                                                    <a href="" class="badge badge-secondary text-white" onclick="return confirm('Czy na pewno usunąć galerie? (UWAGA!) Zostaną usunięte zdjęcia z tej galerii! Nie będzie można ich przywrócić')">Usuń</a>
+                                                    <a href="{{ path('admin_gallery_remove', {'id': gallery.id}) }}" class="badge badge-secondary text-white" onclick="return confirm('Czy na pewno usunąć galerie? (UWAGA!) Zostaną usunięte zdjęcia z tej galerii! Nie będzie można ich przywrócić')">Usuń</a>
                                                 </div>
                                             </div>
                                             <div>
