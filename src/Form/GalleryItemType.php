@@ -19,24 +19,11 @@ class GalleryItemType extends AbstractType
     {
         $builder
             ->add('picture', FileType::class, [
+                'mapped' => false,
                 'multiple' => true,
                 'attr' => [
                     'accept' => 'image/*',
                 ],
-                'constraints' => [
-                    new File([
-                        'maxSize' => '5M',
-                        'mimeTypes' => [
-                            'image/*'
-                        ],
-                        'mimeTypesMessage' => 'Niepoprawny obraz',
-                    ])
-                ]
-            ])
-            ->add('gallery', EntityType::class, [
-                'label' => 'Galeria',
-                'class' => Gallery::class,
-                'choice_label' => 'name',
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Zapisz',
