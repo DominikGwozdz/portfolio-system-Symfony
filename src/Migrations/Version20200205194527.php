@@ -22,7 +22,7 @@ final class Version20200205194527 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE gallery_category ADD slug VARCHAR(500) DEFAULT NULL AFTER name');
+        $this->addSql('ALTER TABLE gallery_category ADD slug VARCHAR(500) DEFAULT NULL UNIQUE AFTER name');
     }
 
     public function down(Schema $schema) : void
