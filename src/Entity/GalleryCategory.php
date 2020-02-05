@@ -24,6 +24,11 @@ class GalleryCategory
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=500)
+     */
+    private $slug;
+
+    /**
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     private $picture;
@@ -37,11 +42,6 @@ class GalleryCategory
      * @ORM\OneToMany(targetEntity="App\Entity\Gallery", mappedBy="category")
      */
     private $galleries;
-
-    /**
-     * @ORM\Column(type="string", length=500)
-     */
-    private $slug;
 
     public function __construct()
     {
