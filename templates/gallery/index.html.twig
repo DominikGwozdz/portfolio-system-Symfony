@@ -8,9 +8,33 @@
 
             <div class="row justify-content-center">
                 <div class="col-md-7">
-                    <div class="row mb-5 site-section">
-                        <div class="col-12 ">
+                    <div class="row site-section">
+                        <div class="col-12">
                             <h1 class="site-section-heading text-center">Galeria</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p class="h4">Wybierz kategorie</p>
+            </div>
+
+            <div class="site-section"  data-aos="fade">
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="row">
+                                {% for category in categories %}
+                                    <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
+                                        <a href="" class="h-100 p-4 p-lg-5 bg-light site-block-feature-7 d-flex flex-column">
+                                            <img src="images/categories/{{ category.picture }}" class="img-fluid" alt="{{ category.name }}"/>
+                                            <h3 class="text-black h4 mt-auto">{{ category.name }}</h3>
+                                            <p><strong class="font-weight-bold text-primary">Przejdź</strong></p>
+                                        </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>
