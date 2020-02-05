@@ -6,6 +6,7 @@ use App\Controller\AdminController;
 use App\Entity\Gallery;
 use App\Entity\GalleryItem;
 use App\Form\GalleryType;
+use Behat\Transliterator\Transliterator;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -51,6 +52,8 @@ class AdminGalleryController extends AdminController
 
                 $gallery = new Gallery();
                 $gallery->setName($form->get('name')->getData());
+                $slugName = Transliterator::transliterate($form->get('name')->getData());
+                $gallery->setSlug($slugName);
                 $gallery->setIsProtected($form->get('is_protected')->getData());
                 $gallery->setPassword($form->get('password')->getData());
                 $gallery->setIsVisible($form->get('is_visible')->getData());
