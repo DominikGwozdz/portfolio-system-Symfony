@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Controller\AdminController;
 use App\Entity\GalleryCategory;
 use App\Form\CategoryType;
+use Behat\Transliterator\Transliterator;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -50,6 +51,8 @@ class AdminCategoryController extends AdminController
 
                 $category = new GalleryCategory();
                 $category->setName($form->get('name')->getData());
+                $slugName = Transliterator::transliterate($form->get('name')->getData());
+                $category->setSlug($slugName);
                 $category->setIsVisible($form->get('is_visible')->getData());
 
                 /** @var UploadedFile $pictureFile */
@@ -108,6 +111,8 @@ class AdminCategoryController extends AdminController
 
                 $category = $em->getRepository(GalleryCategory::class)->find($id);
                 $category->setName($form->get('name')->getData());
+                $slugName = Transliterator::transliterate($form->get('name')->getData());
+                $category->setSlug($slugName);
                 $category->setIsVisible($form->get('is_visible')->getData());
 
                 /** @var UploadedFile $pictureFile */
