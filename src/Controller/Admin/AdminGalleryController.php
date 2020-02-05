@@ -6,6 +6,7 @@ use App\Controller\AdminController;
 use App\Entity\Gallery;
 use App\Entity\GalleryItem;
 use App\Form\GalleryType;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -154,5 +155,41 @@ class AdminGalleryController extends AdminController
         return $this->render('admin/gallery_edit.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/admin/gallery/remove/{id}", name="admin_gallery_remove")
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function galleryRemove($id) : RedirectResponse
+    {
+        $emGallery = $this->getDoctrine()->getManager();
+        $emGalleryItem = $this->getDoctrine()->getManager();
+
+        $gallery = $emGallery->getRepository(Gallery::class)->find($id);
+        $galleryItem = $emGalleryItem->getRepository(GalleryItem::class)->findBy(['gallery' => $id]);
+
+        try {
+            foreach ($galleryItem as $item)
+            {
+                //remove gallery item records from gallery
+                $emGalleryItem->remove($item);
+                $emGalleryItem->flush();
+            }
+
+            //remove entire directory of gallery with label and photos
+            $filesGallery = new Filesystem();
+            $filesGallery->remove('images/gallery/' . $gallery->getDirectory());
+
+            //remove gallery record
+            $emGallery->remove($gallery);
+            $emGallery->flush();
+        } catch (\Exception $e) {
+            $this->addFlash('error', 'Wystąpił nieoczekiwany błąd przy usuwaniu galerii');
+        }
+
+        $this->addFlash('success', 'Usunięto galerie!');
+        return $this->redirectToRoute('admin_gallery');
     }
 }
