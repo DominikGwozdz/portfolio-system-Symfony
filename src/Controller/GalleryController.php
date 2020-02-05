@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\GalleryCategory;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class GalleryController extends AbstractController
@@ -19,5 +20,22 @@ class GalleryController extends AbstractController
             'controller_name' => 'GalleryController',
             'categories' => $categories,
         ]);
+    }
+
+    /**
+     * @Route("/gallery/category/{slug}", name="category")
+     * @param string $slug
+     * @return Response
+     */
+    public function category($slug)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $galleryCategoryRepository = $em->getRepository(GalleryCategory::class)->findOneBy(['slug' => $slug]);
+        $galleries = $galleryCategoryRepository->getGalleries();
+
+        return $this->render('gallery/category.html.twig', [
+            'galleries' => $galleries,
+        ]);
+
     }
 }
