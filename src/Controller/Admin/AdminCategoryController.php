@@ -153,16 +153,19 @@ class AdminCategoryController extends AdminController
             $em = $this->getDoctrine()->getManager();
             $galleryCategory = $em->getRepository(GalleryCategory::class)->find($id);
 
+            $em->remove($galleryCategory);
+            $em->flush();
+
             $filesystem = new Filesystem();
             if ($filesystem->exists('images/categories/' . $galleryCategory->getPicture())) {
                 $filesystem->remove('images/categories/' . $galleryCategory->getPicture());
             }
-            $em->remove($galleryCategory);
-            $em->flush();
+
             $this->addFlash('success','Usunięto kategorie!');
-            return $this->redirectToRoute('admin_category');
         } catch (\Exception $e) {
-            $this->addFlash('error','Nie można usunąć kategorii - byc może zawiera juz jakies galerie. Najpierw usuń wszystkie galerie z kategorii!');
+            $this->addFlash('error','Nie można usunąć kategorii - być może zawiera już jakieś galerie. Najpierw usuń wszystkie galerie z tej kategorii!');
         }
+
+        return $this->redirectToRoute('admin_category');
     }
 }
