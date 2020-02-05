@@ -27,7 +27,7 @@
                             <div class="row">
                                 {% for gallery in galleries %}
                                     <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5 mb-lg-5">
-                                        <a href="" class="h-100 p-4 p-lg-5 bg-light site-block-feature-7 d-flex flex-column">
+                                        <a href="{{ path('gallery_show', {'slug': gallery.slug}) }}" class="h-100 p-4 p-lg-5 bg-light site-block-feature-7 d-flex flex-column">
                                             <img src="/images/gallery/{{ gallery.directory }}/label/{{ gallery.picture }}" class="img-fluid" alt="{{ gallery.name }}"/>
                                             <h3 class="text-black h4 mt-auto">{{ gallery.name }}</h3>
                                             <p><strong class="font-weight-bold text-primary">Przejdź</strong></p>
