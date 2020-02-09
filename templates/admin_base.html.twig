@@ -78,7 +78,7 @@
                                 <span class="nav-link">Panel zarządzania</span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin">
+                                <a class="nav-link" href="{{ path('admin') }}">
                                     <span class="menu-title">Dashboard</span>
                                     <i class="icon-screen-desktop menu-icon"></i>
                                 </a>
@@ -87,7 +87,7 @@
                                 <span class="nav-link">Strona o mnie</span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin/about">
+                                <a class="nav-link" href="{{ path('admin_about') }}">
                                     <span class="menu-title">O mnie</span>
                                     <i class="icon-user menu-icon"></i>
                                 </a>
@@ -100,8 +100,8 @@
                                 </a>
                                 <div class="collapse" id="ui-basic">
                                     <ul class="nav flex-column sub-menu">
-                                        <li class="nav-item"> <a class="nav-link" href="/admin/category">Kategorie</a></li>
-                                        <li class="nav-item"> <a class="nav-link" href="/admin/gallery">Galerie</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="{{ path('admin_category') }}">Kategorie</a></li>
+                                        <li class="nav-item"> <a class="nav-link" href="{{ path('admin_gallery') }}">Galerie</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -109,9 +109,9 @@
                                 <span class="nav-link">Inne</span>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/admin/contact">
+                                <a class="nav-link" href="{{ path('admin_contact') }}">
                                     <span class="menu-title">Kontakt</span>
-                                    <i class="icon-user menu-icon"></i>
+                                    <i class="icon-phone menu-icon"></i>
                                 </a>
                             </li>
 
