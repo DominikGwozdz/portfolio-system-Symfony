@@ -19,8 +19,8 @@
                     </div>
                     <div class="row" id="lightgallery">
                         {% for galleryItem in galleryItems %}
-                        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="images/big-images/nature_big_1.jpg" data-sub-html="<h4>Fading Light</h4><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor doloremque hic excepturi fugit, sunt impedit fuga tempora, ad amet aliquid?</p>">
-                            <a href="#"><img src="/images/gallery/{{ gallery.directory }}/{{ galleryItem.picture }}" alt="IMage" class="img-fluid"></a>
+                        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 item" data-aos="fade" data-src="/images/gallery/{{ gallery.directory }}/{{ galleryItem.picture }}" data-sub-html=" ">
+                            <a href="#"><img src="/images/gallery/{{ gallery.directory }}/{{ galleryItem.picture }}" alt="{{ gallery.directory }}" class="img-fluid"></a>
                         </div>
                         {% endfor %}
                     </div>
