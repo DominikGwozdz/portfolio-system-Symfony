@@ -57,7 +57,7 @@
 
                                         <li {% if app.request.get('_route') == 'index' %}class="active"{% endif %}><a href="/">Strona główna</a></li>
                                         <li {% if app.request.get('_route') == 'about' %}class="active"{% endif %}><a href="/about">O mnie</a> </li>
-                                        <li><a href="/">Osiągnięcia</a></li>
+                                        <li {% if app.request.get('_route') == 'achievements' %}class="active"{% endif %}><a href="/achievements">Osiągnięcia</a></li>
                                         <li {% if app.request.get('_route') == 'pricing' %}class="active"{% endif %}><a href="/pricing">Cennik</a></li>
                                         <li {% if app.request.get('_route') == 'gallery' %}class="active"{% endif %}><a href="/gallery">Galeria</a></li>
                                         <li {% if app.request.get('_route') == 'contact' %}class="active"{% endif %}><a href="/contact">Kontakt</a></li>
