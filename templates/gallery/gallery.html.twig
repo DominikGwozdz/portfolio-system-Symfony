@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GalleryController!{% endblock %}
+{% block title %}{{ parent() }}{{ gallery.name }}{% endblock %}
 
 {% block content %}
     <div class=""  data-aos="fade">
