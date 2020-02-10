@@ -14,7 +14,7 @@ class IndexController extends AbstractController
     public function index()
     {
         $em = $this->getDoctrine()->getManager();
-        $visibleGalleries = $em->getRepository(Gallery::class)->findBy(['is_visible' => true], ['id' => 'DESC']);
+        $visibleGalleries = $em->getRepository(Gallery::class)->findBy(['is_visible' => true], ['id' => 'DESC'], 8);
 
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
