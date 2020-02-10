@@ -3,7 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% block title %}Foto-Sylwia - {% endblock %}</title>
+
+        <meta name="description" content="{{ config.siteDescription }}" />
+
+        <title>{% block title %}{{ config.siteName }} - {% endblock %}</title>
         {% block stylesheets %}
             <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300i,400,700" rel="stylesheet">
 
@@ -28,6 +31,12 @@
             <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         {% endblock %}
 
+        {% block opengraph %}
+            <meta property="og:site_name" content="{{ config.siteAddress }}" />
+            <meta property="og:title" content="{{ config.siteName }}" />
+            <meta property="og:description" content="{{ config.siteDescription }}" />
+        {% endblock %}
+
     </head>
     <body>
         {% block body %}
@@ -49,7 +58,7 @@
                         <div class="row align-items-center">
 
                             <div class="col-6 col-xl-2" data-aos="fade-down">
-                                <h1 class="mb-0"><a href="{{ path('index') }}" class="text-black h2 mb-0">Foto-Sylwia</a></h1>
+                                <h1 class="mb-0"><a href="{{ path('index') }}" class="text-black h2 mb-0">{{ config.siteName }}</a></h1>
                             </div>
                             <div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
                                 <nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
