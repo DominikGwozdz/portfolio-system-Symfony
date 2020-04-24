@@ -2,6 +2,11 @@
 
 {% block title %}{{ parent() }}{{ gallery.name }}{% endblock %}
 
+{% block opengraph %}
+    {{ parent() }}
+    <meta property="og:image" content="{{ config.siteAddress }}/images/gallery/{{ gallery.directory }}/{{ galleryItems[0].picture }}">
+{% endblock %}
+
 {% block content %}
     <div class=""  data-aos="fade">
         <div class="container-fluid">
