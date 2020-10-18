@@ -63,9 +63,15 @@ class Gallery
      */
     private $galleryItems;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Visit::class, mappedBy="gallery")
+     */
+    private $visits;
+
     public function __construct()
     {
         $this->galleryItems = new ArrayCollection();
+        $this->visits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -194,6 +200,37 @@ class Gallery
             // set the owning side to null (unless already changed)
             if ($galleryItem->getGallery() === $this) {
                 $galleryItem->setGallery(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Visit[]
+     */
+    public function getVisits(): Collection
+    {
+        return $this->visits;
+    }
+
+    public function addVisit(Visit $visit): self
+    {
+        if (!$this->visits->contains($visit)) {
+            $this->visits[] = $visit;
+            $visit->setGallery($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVisit(Visit $visit): self
+    {
+        if ($this->visits->contains($visit)) {
+            $this->visits->removeElement($visit);
+            // set the owning side to null (unless already changed)
+            if ($visit->getGallery() === $this) {
+                $visit->setGallery(null);
             }
         }
 
