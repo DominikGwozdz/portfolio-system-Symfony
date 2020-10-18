@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Gallery;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+//use Doctrine\Common\Persistence\ManagerRegistry;
+//use Doctrine\Common\Persistence\PersistentObject;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Gallery|null find($id, $lockMode = null, $lockVersion = null)
