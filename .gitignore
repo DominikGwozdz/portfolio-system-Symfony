@@ -18,8 +18,6 @@
 ###Below files are custom by Portfolio system
 .env
 .idea
-composer.lock
-symfony.lock
 public/images/about/*
 public/images/categories/*
 public/images/gallery/*
