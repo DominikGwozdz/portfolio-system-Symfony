@@ -64,7 +64,7 @@ class GalleryController extends AbstractController
         $gallery = $em->getRepository(Gallery::class)->findOneBy(['slug' => $slug]);
         $galleryItems = $gallery->getGalleryItems();
 
-        $this->visitorCounter->countVisit($request);
+        $this->visitorCounter->countVisit($gallery, $request);
 
         return $this->render('gallery/gallery.html.twig', [
             'galleryItems' => $galleryItems,
