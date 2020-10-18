@@ -17,7 +17,7 @@
 
 ###Below files are custom by Portfolio system
 .env
-.idea/*
+.idea
 composer.lock
 symfony.lock
 public/images/about/*
