@@ -4,12 +4,24 @@ namespace App\Controller;
 
 use App\Entity\Gallery;
 use App\Entity\GalleryCategory;
+use App\Service\VisitorCounterService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class GalleryController extends AbstractController
 {
+    /**
+     * @var VisitorCounterService
+     */
+    protected $visitorCounter;
+
+    public function __construct(VisitorCounterService $visitorCounter)
+    {
+        $this->visitorCounter = $visitorCounter;
+    }
+
     /**
      * @Route("/gallery", name="gallery")
      */
@@ -43,15 +55,16 @@ class GalleryController extends AbstractController
     /**
      * @Route("/gallery/{slug}", name="gallery_show")
      * @param $slug
+     * @param Request $request
      * @return Response
      */
-    public function gallery($slug)
+    public function gallery($slug, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $gallery = $em->getRepository(Gallery::class)->findOneBy(['slug' => $slug]);
         $galleryItems = $gallery->getGalleryItems();
 
-
+        $this->visitorCounter->countVisit($request);
 
         return $this->render('gallery/gallery.html.twig', [
             'galleryItems' => $galleryItems,
