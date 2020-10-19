@@ -30,13 +30,17 @@
                                                 <div class="c-gallery-admin__title report-title">Nazwa: {{ gallery.name }}</div>
                                                 <h4 class="c-gallery-admin__category">Kategoria: {{ gallery.category.name }}</h4>
                                                 <p class="d-flex flex-row justify-content-between align-items-center">
-                                                    <span class="text-muted">X zdjęć</span>
+                                                    <span class="text-muted">{{ gallery.galleryItems.count }} zdjęć</span>
+
                                                     {% if gallery.isVisible %}
                                                         <span class="badge badge-success w-50">Widoczna</span>
                                                     {% else %}
                                                         <span class="badge badge-danger w-50">Niewidoczna</span>
                                                     {% endif %}
 
+                                                </p>
+                                                <p class="d-flex flex-row justify-content-between align-items-center">
+                                                    <span class="text-muted">Wyświetleń dziś: {{ visitsToday[gallery.id] }}</span>
                                                 </p>
                                                 <div class="">
                                                     <a href="{{ path('admin_gallery_add_mass_photos', {'id': gallery.id}) }}" class="badge badge-dark text-white">Dodaj zdjęcia</a>

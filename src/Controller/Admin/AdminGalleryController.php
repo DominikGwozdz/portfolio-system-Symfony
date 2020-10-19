@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Controller\AdminController;
 use App\Entity\Gallery;
 use App\Entity\GalleryItem;
+use App\Entity\Visit;
 use App\Form\GalleryType;
 use Behat\Transliterator\Transliterator;
 use Symfony\Component\Filesystem\Filesystem;
@@ -29,10 +30,22 @@ class AdminGalleryController extends AdminController
     public function gallery()
     {
         $em = $this->getDoctrine()->getManager();
-        $galleryRepository = $em->getRepository(Gallery::class)->findAll();
+        $galleries = $em->getRepository(Gallery::class)->findAll();
+
+        $visitsToday = [];
+        foreach ($galleries as $gallery) {
+            /** @var Visit $visit */
+            $visit = $em->getRepository(Visit::class)->findTodayVisitsForGallery($gallery->getId());
+            if ($visit) {
+                $visitsToday[$gallery->getId()] = $visit[0]->getCount();
+            } else {
+                $visitsToday[$gallery->getId()] = 0;
+            }
+        }
 
         return $this->render('admin/gallery.html.twig', [
-            'galleries' => $galleryRepository,
+            'galleries' => $galleries,
+            'visitsToday' => $visitsToday
         ]);
     }
 

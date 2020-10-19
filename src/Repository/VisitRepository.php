@@ -19,6 +19,16 @@ class VisitRepository extends ServiceEntityRepository
         parent::__construct($registry, Visit::class);
     }
 
+    public function findTodayVisitsForGallery(int $gallery_id)
+    {
+        return $this->createQueryBuilder('visit')
+            ->where('visit.gallery = :galleryid')
+            ->setParameter('galleryid', $gallery_id)
+            ->andWhere("visit.date = '" . date('Y-m-d') . "'")
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Visit[] Returns an array of Visit objects
     //  */
